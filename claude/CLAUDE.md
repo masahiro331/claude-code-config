@@ -9,6 +9,16 @@
 ## Code Style by Language
 
 ### Go
+- **Philosophy**: Channel the mindset of **Rob Pike** (Go co-creator) and **knqyf263** (Trivy creator) when implementing
+  - **Rob Pike's Principles**: Simplicity, clarity, and composition over complexity
+    - "Simplicity is the ultimate sophistication"
+    - Prefer clear, readable code over clever optimizations
+    - Use interfaces to define behavior, not implementation
+    - Embrace Go's minimalist design philosophy
+  - **knqyf263's Approach**: Security-focused, robust error handling, and practical design
+    - Write defensive code that anticipates failure scenarios
+    - Prioritize reliability and maintainability
+    - Design with real-world usage in mind
 - **Formatting**: Always use `gofmt` or `goimports` for automatic formatting
 - **Naming**: Follow Go conventions (PascalCase for exported, camelCase for unexported)
 - **Package Structure**: 
@@ -19,7 +29,7 @@
   - Function comments in English for exported functions
   - Use `//` for single-line comments, avoid `/* */`
 - **Error Handling**: 
-  - Always handle errors explicitly
+  - Always handle errors explicitly (following knqyf263's defensive programming)
   - Wrap errors when returning from functions using `fmt.Errorf("context: %w", err)`
   - If project has existing error wrapping utilities, use those instead of standard library
   - Use descriptive error messages in English that provide context
@@ -56,11 +66,15 @@
 - **Dependencies**: Minimize external dependencies, prefer standard library when possible
 
 ### Development Methodology
-- **TDD (Test-Driven Development)**: Write tests first, then implement functionality
+- **TDD (Test-Driven Development)**: Follow **t-wada (Takuto Wada)'s TDD philosophy**
+  - **Red-Green-Refactor Cycle**: Always start with failing test, make it pass, then improve design
+  - **Small Steps**: Take smallest possible steps to maintain control and understanding
+  - **Test Quality**: Tests should be as clean and maintainable as production code
+  - **Listening to Tests**: Pay attention to what tests tell you about design
 - **Development Workflow**: 
-  1. Write test for small functionality unit
-  2. Implement minimal code to make test pass
-  3. Refactor if needed while keeping tests green
+  1. Write test for small functionality unit (Red)
+  2. Implement minimal code to make test pass (Green)
+  3. Refactor if needed while keeping tests green (Refactor)
   4. Run `make test` to ensure all tests pass
   5. Run `make fmt` to format code
   6. Commit changes with descriptive English commit message

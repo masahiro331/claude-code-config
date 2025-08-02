@@ -5,77 +5,88 @@ allowed-tools: Read(*), Grep(*), Glob(*), Edit(*), MultiEdit(*), Bash(make test:
 
 # Code Refactoring Assistant
 
-指定されたコードをリファクタリングし、機能を維持しながらコード品質を向上させます。
+Perform systematic refactoring of the specified code while maintaining functionality and improving code quality.
 
-## Target: ${1:対象ファイルまたはディレクトリ}
+## Target: ${1:file or directory to refactor}
 
 ## Refactoring Process
 
-### 1. 現状分析
-- 対象コードの構造と依存関係を理解
-- 既存のテストケースを確認（存在しない場合は作成が必要）
-- リファクタリング対象の特定
+### 1. Current State Analysis
+- Understand target code structure and dependencies
+- Check existing test cases (create if none exist)
+- Identify refactoring targets
 
-### 2. テスト作成（TDD原則）
-- **既存テストがない場合**: 現在の動作を保証するテストを作成
-- **既存テストがある場合**: テストカバレッジを確認し、不足分を補完
-- リファクタリング前にすべてのテストが通ることを確認
+### 2. Test Creation (TDD Principles)
+- **If no existing tests**: Create tests to guarantee current behavior
+- **If existing tests**: Verify test coverage and supplement missing parts
+- Ensure all tests pass before refactoring
 
-### 3. リファクタリング計画
-以下の観点から改善点を特定：
-- **可読性**: 変数名、関数名、コメント
-- **保守性**: 関数の分割、重複コードの除去
-- **パフォーマンス**: 不要な処理の最適化
-- **設計**: SOLID原則、依存性注入
-- **テスタビリティ**: モック可能性、単一責任
+### 3. Refactoring Planning
+Identify improvement points from these perspectives:
+- **Readability**: Variable names, function names, comments
+- **Maintainability**: Function decomposition, duplicate code removal
+- **Performance**: Optimization of unnecessary processing
+- **Design**: SOLID principles, dependency injection
+- **Testability**: Mockability, single responsibility
 
-### 4. 実装
-1. テストが通ることを確認（`make test`）
-2. 小さな単位でリファクタリングを実行
-3. 各ステップでテストを実行
-4. コードフォーマットを適用（`make fmt`）
+### 4. Implementation
+1. Confirm tests pass (`make test`)
+2. Execute refactoring in small units
+3. Run tests after each step
+4. Apply code formatting (`make fmt`)
 
-### 5. 検証
-- すべてのテストが通ることを確認
-- パフォーマンスの劣化がないことを確認
-- 外部インターフェースが変更されていないことを確認
+### 5. Verification
+- Confirm all tests pass
+- Verify no performance degradation
+- Ensure external interfaces remain unchanged
 
 ## Refactoring Guidelines
 
-### Go言語の場合
-- **命名規則**: Go の慣例に従う（PascalCase/camelCase）
-- **エラーハンドリング**: 適切なerror wrapping
-- **インターフェース**: 必要に応じて抽象化
-- **パッケージ構造**: internal/ ディレクトリの活用
-- **テストファイル**: `*_test.go` 形式で作成
+### Go Language Specific
+- **Naming Conventions**: Follow Go conventions (PascalCase/camelCase)
+- **Error Handling**: Proper error wrapping
+- **Interfaces**: Abstract when necessary
+- **Package Structure**: Utilize internal/ directory
+- **Test Files**: Create in `*_test.go` format
 
-### 共通ガイドライン
-- **Single Responsibility Principle**: 各関数は単一の責任を持つ
-- **DRY Principle**: 重複コードの除去
-- **YAGNI**: 不要な複雑性を避ける
-- **テストカバレッジ**: リファクタリング後もカバレッジを維持
+### General Guidelines
+- **Single Responsibility Principle**: Each function has a single responsibility
+- **DRY Principle**: Remove duplicate code
+- **YAGNI**: Avoid unnecessary complexity
+- **Test Coverage**: Maintain coverage after refactoring
 
 ## Safety Measures
 
-1. **テスト優先**: リファクタリング前に必ずテストを作成または確認
-2. **テスト実行**: 各変更後に `make test` を実行
-3. **コードフォーマット**: 各変更後に `make fmt` を実行
-4. **小さな変更**: 一度に大きな変更をしない
-5. **機能保持**: 外部インターフェースを変更しない
+1. **Test First**: Always create or verify tests before refactoring
+2. **Test Execution**: Run `make test` after each change
+3. **Code Formatting**: Run `make fmt` after each change
+4. **Small Changes**: Don't make large changes at once
+5. **Functionality Preservation**: Don't change external interfaces
 
-## TDD Workflow Integration
+## TDD Philosophy (Following t-wada's Approach)
 
-1. 🧪 **Test**: 既存機能のテスト作成/確認
-2. 🛠️ **Refactor**: 小さな単位でリファクタリング実行
-3. 🔄 **Verify**: テスト実行で動作確認
-4. ✅ **Test**: `make test` で全体テスト
-5. 🎨 **Format**: `make fmt` でコード整形
-6. 💾 **Commit**: 意味のある単位でコミット
+This refactoring process follows **t-wada (Takuto Wada)'s TDD philosophy**:
+
+### Core Principles
+- **Red-Green-Refactor Cycle**: Always start with a failing test (Red), make it pass with minimal code (Green), then improve the design (Refactor)
+- **Small Steps**: Take the smallest possible steps to maintain control and understanding
+- **Test Quality**: Tests should be as clean and maintainable as production code
+- **Triangulation**: Use multiple examples to drive out the correct abstraction
+- **Listening to Tests**: Pay attention to what tests tell you about your design
+
+### TDD Workflow Integration
+
+1. 🧪 **Test (Red)**: Create/verify tests for existing functionality - start with failing tests
+2. 🛠️ **Refactor (Green)**: Execute refactoring in small units to make tests pass
+3. 🔄 **Verify (Refactor)**: Improve design while keeping tests green
+4. ✅ **Test**: Run `make test` for comprehensive testing
+5. 🎨 **Format**: Apply `make fmt` for code formatting
+6. 💾 **Commit**: Commit in meaningful units
 
 ## Output Format
 
-リファクタリング完了後、以下を提供：
-- 変更内容の要約
-- 改善された点
-- 作成したテストの説明
-- 今後の改善提案（もしあれば）
+After refactoring completion, provide:
+- Summary of changes made
+- Improvements achieved
+- Description of tests created
+- Future improvement suggestions (if any)
