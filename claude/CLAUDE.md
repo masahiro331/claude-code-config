@@ -81,6 +81,7 @@
 - **Format**: `<type>(<scope>): <subject>`
 - **Type and scope**: Always lowercase
 - **Scope**: Can be empty (omit parentheses if global change)
+- **Signature**: Do not add Claude signature or co-authored lines to commit messages
 - **Allowed types**:
   - `feat`: New feature for the user
   - `fix`: Bug fix for the user
