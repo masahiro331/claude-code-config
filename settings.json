@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "feedbackSurveyState": {
+    "lastShownTime": 1754031553254
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write.*\\.go$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '🧪 TDD Reminder: テストは作成済みですか？ Test -> Code -> Refactor'"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write.*\\.go$|Edit.*\\.go$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '🔍 Running tests after Go code change...' && make test && echo '✅ Tests passed!' && make fmt && echo '🎨 Code formatted!' || echo '❌ Tests failed! Please fix before proceeding.'"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": ".*implement.*|.*add.*|.*create.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '📝 TDD Workflow: 1️⃣ Test作成 2️⃣ 実装 3️⃣ リファクタ 4️⃣ make test 5️⃣ make fmt 6️⃣ commit'"
+          }
+        ]
+      }
+    ]
+  }
+}
