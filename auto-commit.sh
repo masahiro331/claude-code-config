@@ -61,14 +61,12 @@ COMMIT_MSG="chore(config): update Claude Code configuration
 
 Updated files: ${CHANGED_FILES[*]}
 
-🤖 Generated with [Claude Code](https://claude.ai/code)
-
-Co-Authored-By: Claude <noreply@anthropic.com>"
+"
 
 # Commit the changes
 if git commit -m "$COMMIT_MSG" >/dev/null 2>&1; then
     print_success "Configuration changes committed successfully"
-    
+
     # Push if we have a remote
     if git remote get-url origin >/dev/null 2>&1; then
         if git push origin main >/dev/null 2>&1; then
