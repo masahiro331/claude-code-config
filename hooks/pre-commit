@@ -1,0 +1,32 @@
+#!/bin/bash
+#
+# Pre-commit hook for Claude Code configuration
+# Automatically stages and commits changes to configuration files
+#
+
+set -e
+
+# Get the repository root
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+
+# Configuration files to watch
+CONFIG_FILES=("claude/CLAUDE.md" "claude/settings.json")
+
+# Check if any configuration files have been modified
+MODIFIED_CONFIG_FILES=()
+for file in "${CONFIG_FILES[@]}"; do
+    if [[ -f "$REPO_ROOT/$file" ]] && git diff --cached --quiet "$file" 2>/dev/null; then
+        # File exists but not staged, check if it's modified
+        if ! git diff --quiet "$file" 2>/dev/null; then
+            MODIFIED_CONFIG_FILES+=("$file")
+        fi
+    fi
+done
+
+# Auto-stage modified configuration files
+if [[ ${#MODIFIED_CONFIG_FILES[@]} -gt 0 ]]; then
+    echo "[Claude Config] Auto-staging configuration files: ${MODIFIED_CONFIG_FILES[*]}"
+    for file in "${MODIFIED_CONFIG_FILES[@]}"; do
+        git add "$file"
+    done
+fi

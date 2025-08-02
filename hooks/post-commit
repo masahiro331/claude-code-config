@@ -1,0 +1,26 @@
+#!/bin/bash
+#
+# Post-commit hook for Claude Code configuration
+# Automatically pushes changes to remote repository
+#
+
+set -e
+
+# Colors for output
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
+echo -e "${GREEN}[Claude Config]${NC} Auto-pushing configuration changes..."
+
+# Check if we have a remote repository
+if git remote get-url origin &>/dev/null; then
+    # Push to origin
+    if git push origin main 2>/dev/null; then
+        echo -e "${GREEN}[Claude Config]${NC} Configuration changes pushed successfully"
+    else
+        echo -e "${YELLOW}[Claude Config]${NC} Failed to push changes (network issue or authentication required)"
+    fi
+else
+    echo -e "${YELLOW}[Claude Config]${NC} No remote repository configured, skipping push"
+fi
