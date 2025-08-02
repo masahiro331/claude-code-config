@@ -57,6 +57,9 @@
 - `ghq get <repo>` - Clone repository using ghq
 - Use `ghq` command for repository management unless in CI environment
 
+### Custom Commands
+- `/create-pull-request` - Create a new pull request with proper branch management and PR summary
+
 ## Development Preferences
 
 ### Libraries and Tools
