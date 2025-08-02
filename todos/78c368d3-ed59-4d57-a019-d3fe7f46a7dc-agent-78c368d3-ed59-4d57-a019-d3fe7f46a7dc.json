@@ -1,0 +1,26 @@
+[
+  {
+    "content": "auto-commit.shの変更内容を分析",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "未追跡ファイルの内容を確認",
+    "status": "completed",
+    "priority": "medium",
+    "id": "2"
+  },
+  {
+    "content": "変更をグループ化してcommit戦略を決定",
+    "status": "completed",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "適切なcommitメッセージでcommitを実行",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "4"
+  }
+]
