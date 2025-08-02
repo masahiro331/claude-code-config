@@ -1,6 +1,6 @@
 ---
 description: Perform systematic refactoring of code while maintaining functionality and improving quality
-allowed-tools: Read(*), Grep(*), Glob(*), Edit(*), MultiEdit(*), Bash(make test:*), Bash(make fmt:*), TodoWrite(*)
+allowed-tools: Read(*), Grep(*), Glob(*), Edit(*), MultiEdit(*), Bash(make test:*), Bash(make fmt:*), Bash(go test -v:*), Bash(go fmt:*), Bash(goimports:*), TodoWrite(*)
 ---
 
 # Code Refactoring Assistant
@@ -30,10 +30,10 @@ Identify improvement points from these perspectives:
 - **Testability**: Mockability, single responsibility
 
 ### 4. Implementation
-1. Confirm tests pass (`make test`)
+1. Confirm tests pass (`make test` or `go test -v ./...`)
 2. Execute refactoring in small units
 3. Run tests after each step
-4. Apply code formatting (`make fmt`)
+4. Apply code formatting (`make fmt` or `go fmt ./...` / `goimports -w .`)
 
 ### 5. Verification
 - Confirm all tests pass
@@ -58,8 +58,8 @@ Identify improvement points from these perspectives:
 ## Safety Measures
 
 1. **Test First**: Always create or verify tests before refactoring
-2. **Test Execution**: Run `make test` after each change
-3. **Code Formatting**: Run `make fmt` after each change
+2. **Test Execution**: Run `make test` or `go test -v ./...` after each change
+3. **Code Formatting**: Run `make fmt` or `go fmt ./...` / `goimports -w .` after each change
 4. **Small Changes**: Don't make large changes at once
 5. **Functionality Preservation**: Don't change external interfaces
 
@@ -79,8 +79,8 @@ This refactoring process follows **t-wada (Takuto Wada)'s TDD philosophy**:
 1. 🧪 **Test (Red)**: Create/verify tests for existing functionality - start with failing tests
 2. 🛠️ **Refactor (Green)**: Execute refactoring in small units to make tests pass
 3. 🔄 **Verify (Refactor)**: Improve design while keeping tests green
-4. ✅ **Test**: Run `make test` for comprehensive testing
-5. 🎨 **Format**: Apply `make fmt` for code formatting
+4. ✅ **Test**: Run `make test` or `go test -v ./...` for comprehensive testing
+5. 🎨 **Format**: Apply `make fmt` or `go fmt ./...` / `goimports -w .` for code formatting
 6. 💾 **Commit**: Commit in meaningful units
 
 ## Output Format

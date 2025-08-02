@@ -46,8 +46,8 @@
 ## Common Commands
 
 ### Frequently Used Commands
-- `make test` - Run all tests
-- `make fmt` - Format all Go code
+- `make test` - Run all tests (or `go test -v ./...` if Makefile not available)
+- `make fmt` - Format all Go code (or `go fmt ./...` / `goimports -w .` if Makefile not available)
 
 ### Git Workflow
 - `git status` - Check repository status
@@ -75,8 +75,8 @@
   1. Write test for small functionality unit (Red)
   2. Implement minimal code to make test pass (Green)
   3. Refactor if needed while keeping tests green (Refactor)
-  4. Run `make test` to ensure all tests pass
-  5. Run `make fmt` to format code
+  4. Run `make test` or `go test -v ./...` to ensure all tests pass
+  5. Run `make fmt` or `go fmt ./...` / `goimports -w .` to format code
   6. Commit changes with descriptive English commit message
   7. Repeat for next small feature
 
