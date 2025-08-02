@@ -1,0 +1,24 @@
+# Claude Code temporary files
+claude/projects/
+claude/shell-snapshots/
+statsig/
+todos/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Logs
+*.log
