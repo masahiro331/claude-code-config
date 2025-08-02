@@ -46,36 +46,36 @@ backup_existing_config() {
     fi
 }
 
-# Install configuration files
+# Install configuration files using symlink
 install_config() {
     local script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
     local claude_dir="$HOME/.claude"
     
-    # Create .claude directory if it doesn't exist
-    mkdir -p "$claude_dir"
-    
-    # Copy configuration files
-    if [ -f "$script_dir/CLAUDE.md" ]; then
-        print_info "Installing CLAUDE.md..."
-        cp "$script_dir/CLAUDE.md" "$claude_dir/"
-    else
-        print_warning "CLAUDE.md not found in script directory"
+    # Remove existing .claude directory/symlink if it exists
+    if [ -e "$claude_dir" ]; then
+        rm -rf "$claude_dir"
+        print_info "Removed existing .claude directory/symlink"
     fi
     
-    if [ -f "$script_dir/settings.json" ]; then
-        print_info "Installing settings.json..."
-        cp "$script_dir/settings.json" "$claude_dir/"
-    else
-        print_warning "settings.json not found in script directory"
-    fi
+    # Create symlink to this repository
+    ln -s "$script_dir" "$claude_dir"
+    print_info "Created symlink: $claude_dir -> $script_dir"
     
-    print_info "Configuration files installed successfully"
+    # Verify required files exist
+    if [ -f "$script_dir/CLAUDE.md" ] && [ -f "$script_dir/settings.json" ]; then
+        print_info "Configuration files linked successfully"
+    else
+        print_error "Required configuration files not found in $script_dir"
+        exit 1
+    fi
 }
 
 # Set appropriate permissions
 set_permissions() {
-    chmod 700 "$HOME/.claude"
-    chmod 600 "$HOME/.claude"/* 2>/dev/null || true
+    # For symlink, we need to set permissions on the target directory
+    local target_dir="$(readlink "$HOME/.claude")"
+    chmod 700 "$target_dir"
+    chmod 600 "$target_dir"/* 2>/dev/null || true
     print_info "Permissions set correctly"
 }
 
@@ -83,14 +83,18 @@ set_permissions() {
 verify_installation() {
     local claude_dir="$HOME/.claude"
     
-    if [ -f "$claude_dir/CLAUDE.md" ] && [ -f "$claude_dir/settings.json" ]; then
+    if [ -L "$claude_dir" ] && [ -f "$claude_dir/CLAUDE.md" ] && [ -f "$claude_dir/settings.json" ]; then
         print_info "Installation verified successfully"
         echo
-        echo "Configuration files installed:"
+        echo "Configuration symlink created:"
+        echo "  $claude_dir -> $(readlink "$claude_dir")"
+        echo
+        echo "Available configuration files:"
         echo "  - $claude_dir/CLAUDE.md"
         echo "  - $claude_dir/settings.json"
         echo
         print_info "Claude Code is now configured with your personal settings"
+        print_info "Any changes to the repository will be automatically reflected in Claude Code"
     else
         print_error "Installation verification failed"
         exit 1

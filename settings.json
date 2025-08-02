@@ -36,6 +36,17 @@
           }
         ]
       }
+    ],
+    "SessionStart": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -L ~/.claude ] && [ -x ~/.claude/sync-check.sh ]; then ~/.claude/sync-check.sh; fi"
+          }
+        ]
+      }
     ]
   }
 }
