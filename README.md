@@ -13,12 +13,15 @@ Personal configuration files for Claude Code CLI with Japanese workflow preferen
 
 ## Files
 
-- `CLAUDE.md` - Global user instructions for Claude Code
-- `settings.json` - Claude Code CLI settings with hooks configuration
-- `install.sh` - Automated installation script
+- `claude/` - Claude Code configuration directory
+  - `CLAUDE.md` - Global user instructions for Claude Code
+  - `settings.json` - Claude Code CLI settings with hooks configuration
+  - `commands/` - Custom commands for Claude Code
+- `hooks/` - Git hooks for automatic configuration management
+- `install-claude-config.sh` - Comprehensive installation script
+- `setup-hooks.sh` - Git hooks setup script
 - `sync-check.sh` - Script to check sync status with upstream repository
 - `auto-commit.sh` - Script to automatically commit and push configuration changes
-- `.git/hooks/` - Git hooks for automatic configuration management
 
 ## Quick Setup
 
@@ -44,13 +47,13 @@ Personal configuration files for Claude Code CLI with Japanese workflow preferen
 
 2. **Run the installation script**:
    ```bash
-   ./install.sh
+   ./install-claude-config.sh
    ```
 
 The installer will:
-- Check if Claude CLI is installed
-- Create a backup of existing configuration (if any)
-- Create a symlink from `~/.claude/` to this repository
+- Install Claude configuration files to `~/.claude/`
+- Copy `claude/CLAUDE.md`, `claude/settings.json`, and `claude/commands/`
+- Install Git hooks for automatic configuration management
 - Set appropriate permissions
 - Verify the installation
 
@@ -191,7 +194,7 @@ If you used the traditional copy installation:
 - You'll see notifications if updates are available or if your changes need to be pushed
 
 ### Automatic Commit and Push
-- Git hooks automatically detect changes to `CLAUDE.md` and `settings.json`
+- Git hooks automatically detect changes to `claude/CLAUDE.md` and `claude/settings.json`
 - Changes are automatically committed with conventional commit messages
 - Commits are automatically pushed to the remote repository
 - Manual commit available with `./auto-commit.sh`
