@@ -120,9 +120,9 @@ refactor: rename getUserData to fetchUserData
 
 ### TDD Workflow
 Built-in workflow reminders:
-1. 🧪 Test作成 (Write tests)
-2. 🛠️ 実装 (Implementation)
-3. 🔄 リファクタ (Refactor)
+1. 🧪 Write tests
+2. 🛠️ Implementation
+3. 🔄 Refactor
 4. ✅ make test
 5. 🎨 make fmt
 6. 💾 commit
