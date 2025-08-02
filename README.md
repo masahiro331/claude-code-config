@@ -21,7 +21,6 @@ Personal configuration files for Claude Code CLI with Japanese workflow preferen
 - `install-claude-config.sh` - Comprehensive installation script
 - `setup-hooks.sh` - Git hooks setup script
 - `sync-check.sh` - Script to check sync status with upstream repository
-- `auto-commit.sh` - Script to automatically commit and push configuration changes
 
 ## Quick Setup
 
@@ -133,7 +132,6 @@ Built-in workflow reminders:
 ### Auto-Sync Features
 - **Session Start Check**: Automatically checks if local configuration is in sync with upstream
 - **Auto-Commit**: Git hooks automatically commit and push configuration file changes
-- **Manual Sync**: Use `./auto-commit.sh` to manually commit configuration changes
 
 ## Usage Examples
 
@@ -153,7 +151,6 @@ The configuration includes shortcuts for:
 - `make fmt` - Format all Go code
 - `ghq get <repo>` - Clone repository using ghq
 - `./sync-check.sh` - Check sync status with upstream
-- `./auto-commit.sh` - Manually commit configuration changes
 
 ## Updating Configuration
 
@@ -197,7 +194,6 @@ If you used the traditional copy installation:
 - Git hooks automatically detect changes to `claude/CLAUDE.md` and `claude/settings.json`
 - Changes are automatically committed with conventional commit messages
 - Commits are automatically pushed to the remote repository
-- Manual commit available with `./auto-commit.sh`
 
 ### Sync Status Messages
 - 🟢 **Up to date**: Configuration matches upstream
