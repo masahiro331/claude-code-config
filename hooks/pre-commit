@@ -11,15 +11,34 @@ REPO_ROOT="$(git rev-parse --show-toplevel)"
 
 # Configuration files to watch
 CONFIG_FILES=("claude/CLAUDE.md" "claude/settings.json")
+CONFIG_DIRS=("claude/commands")
 
 # Check if any configuration files have been modified
 MODIFIED_CONFIG_FILES=()
+
+# Check individual configuration files
 for file in "${CONFIG_FILES[@]}"; do
     if [[ -f "$REPO_ROOT/$file" ]] && git diff --cached --quiet "$file" 2>/dev/null; then
         # File exists but not staged, check if it's modified
         if ! git diff --quiet "$file" 2>/dev/null; then
             MODIFIED_CONFIG_FILES+=("$file")
         fi
+    fi
+done
+
+# Check configuration directories
+for dir in "${CONFIG_DIRS[@]}"; do
+    if [[ -d "$REPO_ROOT/$dir" ]]; then
+        # Find all files in the directory that are modified but not staged
+        while IFS= read -r -d '' file; do
+            rel_file="${file#$REPO_ROOT/}"
+            if git diff --cached --quiet "$rel_file" 2>/dev/null; then
+                # File exists but not staged, check if it's modified
+                if ! git diff --quiet "$rel_file" 2>/dev/null; then
+                    MODIFIED_CONFIG_FILES+=("$rel_file")
+                fi
+            fi
+        done < <(find "$REPO_ROOT/$dir" -type f -print0)
     fi
 done
 
