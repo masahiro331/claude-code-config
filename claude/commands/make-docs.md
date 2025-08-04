@@ -1,5 +1,6 @@
 ---
 description: Generate comprehensive project documentation in the docs/ directory. Types: architecture, packages, api, testing, contributing, all (default)
+argument-hint: [type]
 allowed-tools: Glob(*), Read(*), Write(*.md), Bash(ls, find, head, tail, wc, grep)
 ---
 
