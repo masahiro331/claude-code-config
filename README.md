@@ -16,8 +16,17 @@ Personal configuration files for Claude Code CLI with Japanese workflow preferen
 ## Files
 
 - `claude/` - Claude Code configuration directory
-  - `CLAUDE.md` - Global user instructions for Claude Code
+  - `CLAUDE.md` - Global user instructions for Claude Code with @import syntax
   - `settings.json` - Claude Code CLI settings with hooks configuration
+  - `languages/` - Language-specific development configurations
+    - `go.md` - Go development practices and philosophy
+    - `python.md` - Python development practices and philosophy
+  - `workflows/` - Development workflow configurations (auto-imported)
+    - `development.md` - TDD practices and testing strategies (always loaded)
+    - `quality.md` - Code quality standards and guidelines (always loaded)
+    - `git.md` - Git workflow and commit conventions
+  - `tools/` - Tool configurations and command references
+    - `commands.md` - Frequently used development commands
   - `commands/` - Custom commands for Claude Code
     - `create-pull-request.md` - Create pull requests with proper branch management
     - `make-docs.md` - Generate comprehensive project documentation
@@ -61,10 +70,11 @@ Personal configuration files for Claude Code CLI with Japanese workflow preferen
 
 The installer will:
 - Install Claude configuration files to `~/.claude/`
-- Copy `claude/CLAUDE.md`, `claude/settings.json`, and `claude/commands/`
+- Copy all configuration modules (`claude/CLAUDE.md`, `languages/`, `workflows/`, `tools/`, `commands/`)
+- Copy `claude/settings.json` with hooks configuration
 - Install Git hooks for automatic configuration management
 - Set appropriate permissions
-- Verify the installation
+- Verify the installation and @import syntax
 
 **Benefits of symlink approach:**
 - Any changes to this repository are automatically reflected in Claude Code
@@ -108,9 +118,17 @@ chmod 600 ~/.claude/*
 
 ## Configuration Details
 
+### Configuration Architecture
+
+The configuration uses Claude Code's @import feature for modular organization:
+
+- **Core Practices (Always Loaded)**: Development methodology and quality standards are automatically imported using `@workflows/development.md` and `@workflows/quality.md`
+- **Language-Specific (On-Demand)**: Go and Python configurations are referenced when needed
+- **Structured Organization**: Related configurations are grouped in dedicated directories (`languages/`, `workflows/`, `tools/`)
+
 ### Language Settings
 - **Conversation Language**: Japanese - All interactions with Claude
-- **Code Documentation**: English - Comments, commit messages, and PR documentation
+- **Code Documentation**: English - Comments, commit messages, and PR documentation  
 - **Variable/Function Names**: English - Descriptive naming conventions
 
 ### Development Features
