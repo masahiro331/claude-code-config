@@ -1,11 +1,11 @@
 # Claude Code Configuration
 
-Personal configuration files for Claude Code CLI with Japanese workflow preferences and Go development best practices.
+Personal configuration files for Claude Code CLI with Japanese workflow preferences and Go/Python development best practices.
 
 ## Features
 
 - **Japanese Language Interface**: All interactions with Claude in Japanese
-- **Go Development Optimized**: Configured for Go projects with proper formatting, error handling, and testing workflows
+- **Go/Python Development Optimized**: Configured for Go and Python projects with proper formatting, error handling, and testing workflows
 - **TDD Workflow Integration**: Built-in Test-Driven Development workflow reminders
 - **Consistent Code Style**: Enforced English documentation and variable naming conventions
 - **Git Workflow Integration**: Conventional commit message format and proper Git practices
@@ -19,7 +19,6 @@ Personal configuration files for Claude Code CLI with Japanese workflow preferen
   - `commands/` - Custom commands for Claude Code
 - `hooks/` - Git hooks for automatic configuration management
 - `install-claude-config.sh` - Comprehensive installation script
-- `setup-hooks.sh` - Git hooks setup script
 - `sync-check.sh` - Script to check sync status with upstream repository
 
 ## Quick Setup
@@ -31,9 +30,13 @@ Personal configuration files for Claude Code CLI with Japanese workflow preferen
    curl -fsSL https://claude.ai/install.sh | sh
    ```
 
-2. **Required Tools** (for Go development):
+2. **Required Tools**:
    ```bash
+   # For Go development
    go install golang.org/x/tools/cmd/goimports@latest
+   
+   # For Python development
+   pip install uv ruff mypy
    ```
 
 ### Installation
@@ -103,11 +106,19 @@ chmod 600 ~/.claude/*
 - **Code Documentation**: English - Comments, commit messages, and PR documentation
 - **Variable/Function Names**: English - Descriptive naming conventions
 
-### Go Development Features
+### Development Features
+
+#### Go
 - **Automatic Formatting**: Uses `gofmt` and `goimports`
 - **Error Handling**: Comprehensive error wrapping and handling patterns
 - **Testing**: TDD workflow with table-driven tests
 - **Package Structure**: Prefers `internal/` directory organization
+
+#### Python
+- **Automatic Formatting**: Uses `ruff format` and `ruff check --fix`
+- **Type Checking**: Uses `mypy` for static type analysis
+- **Testing**: Uses `pytest` with fixtures and parametrized tests
+- **Package Management**: Uses `uv` for fast package management
 
 ### Commit Message Format
 Follows conventional commits:
@@ -147,8 +158,12 @@ Built-in workflow reminders:
 
 ### Common Commands
 The configuration includes shortcuts for:
-- `make test` - Run all tests
-- `make fmt` - Format all Go code
+- `make test` / `go test -v ./...` - Run Go tests
+- `make fmt` / `go fmt ./...` / `goimports -w .` - Format Go code
+- `uv run pytest` - Run Python tests
+- `ruff format .` - Format Python code
+- `ruff check --fix .` - Fix Python linting issues
+- `mypy .` - Run Python type checking
 - `ghq get <repo>` - Clone repository using ghq
 - `./sync-check.sh` - Check sync status with upstream
 
@@ -181,7 +196,7 @@ If you used the traditional copy installation:
 
 2. Run the installer again:
    ```bash
-   ./install.sh
+   ./install-claude-config.sh
    ```
 
 ## Auto-Sync Features
