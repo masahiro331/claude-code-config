@@ -6,6 +6,11 @@
 - **Code Documentation**: English - Comments, commit messages, and Pull Request documentation should be in English
 - **Variable/Function Names**: English - Use descriptive English names for variables, functions, and classes
 
+## Core Development Practices (Always Applied)
+
+@workflows/development.md
+@workflows/quality.md
+
 ## Language-Specific Configuration
 
 Programming language configurations are modularized in separate files:
@@ -13,13 +18,11 @@ Programming language configurations are modularized in separate files:
 - **Go**: See `languages/go.md` for Go development practices, philosophy, and code style
 - **Python**: See `languages/python.md` for Python development practices, philosophy, and code style
 
-## Development Workflows
+## Additional Workflows
 
-Development workflow configurations are organized by category:
+Additional workflow configurations:
 
-- **Development Methodology**: See `workflows/development.md` for TDD practices and testing strategies
 - **Git Workflow**: See `workflows/git.md` for commit conventions and Git practices
-- **Code Quality**: See `workflows/quality.md` for quality standards and review guidelines
 
 ## Tools and Commands
 
