@@ -106,6 +106,8 @@
 ### Custom Commands
 - `/create-pull-request` - Create a new pull request with proper branch management and PR summary
 
+## Development Preferences
+
 ### Project Documentation
 - **Documentation Location**: If `docs/` directory exists in project root, read relevant documentation before starting work
   - Check for architecture docs, API specifications, contribution guidelines
@@ -122,8 +124,6 @@
     - Record the rationale behind architectural choices
     - Describe how the package fits into the overall system design
   - Use clear English for all documentation content
-
-## Development Preferences
 
 ### Libraries and Tools
 
