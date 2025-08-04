@@ -26,41 +26,19 @@ if [[ ! -d "$CLAUDE_DIR" ]]; then
     exit 1
 fi
 
-# Create user's Claude directory if it doesn't exist
-if [[ ! -d "$USER_CLAUDE_DIR" ]]; then
-    echo -e "${YELLOW}[Claude Config Installer]${NC} Creating ~/.claude directory..."
-    mkdir -p "$USER_CLAUDE_DIR"
+# Check if user's Claude directory already exists
+if [[ -e "$USER_CLAUDE_DIR" || -L "$USER_CLAUDE_DIR" ]]; then
+    echo -e "${RED}[Claude Config Installer]${NC} Error: ~/.claude already exists"
+    echo -e "${RED}[Claude Config Installer]${NC} To avoid overwriting existing configuration, please remove it manually:"
+    echo -e "${RED}[Claude Config Installer]${NC}   rm -rf ~/.claude"
+    echo -e "${RED}[Claude Config Installer]${NC} Then run this installer again."
+    exit 1
 fi
 
-# Install configuration files
-echo -e "${GREEN}[Claude Config Installer]${NC} Installing configuration files..."
-
-# Copy CLAUDE.md to user's global config
-if [[ -f "$CLAUDE_DIR/CLAUDE.md" ]]; then
-    echo -e "${GREEN}[Claude Config Installer]${NC} Installing global CLAUDE.md..."
-    cp "$CLAUDE_DIR/CLAUDE.md" "$USER_CLAUDE_DIR/CLAUDE.md"
-    echo -e "${GREEN}[Claude Config Installer]${NC} Global CLAUDE.md installed to ~/.claude/CLAUDE.md"
-else
-    echo -e "${YELLOW}[Claude Config Installer]${NC} Warning: CLAUDE.md not found in $CLAUDE_DIR"
-fi
-
-# Copy settings.json if it exists
-if [[ -f "$CLAUDE_DIR/settings.json" ]]; then
-    echo -e "${GREEN}[Claude Config Installer]${NC} Installing settings.json..."
-    cp "$CLAUDE_DIR/settings.json" "$USER_CLAUDE_DIR/settings.json"
-    echo -e "${GREEN}[Claude Config Installer]${NC} settings.json installed to ~/.claude/settings.json"
-else
-    echo -e "${YELLOW}[Claude Config Installer]${NC} Warning: settings.json not found in $CLAUDE_DIR"
-fi
-
-# Copy commands directory if it exists
-if [[ -d "$CLAUDE_DIR/commands" ]]; then
-    echo -e "${GREEN}[Claude Config Installer]${NC} Installing commands..."
-    cp -r "$CLAUDE_DIR/commands" "$USER_CLAUDE_DIR/"
-    echo -e "${GREEN}[Claude Config Installer]${NC} Commands installed to ~/.claude/commands/"
-else
-    echo -e "${YELLOW}[Claude Config Installer]${NC} Warning: commands directory not found in $CLAUDE_DIR"
-fi
+# Link claude directory to user's home
+echo -e "${GREEN}[Claude Config Installer]${NC} Linking claude directory to ~/.claude..."
+ln -s "$CLAUDE_DIR" "$USER_CLAUDE_DIR"
+echo -e "${GREEN}[Claude Config Installer]${NC} Claude configuration directory linked to ~/.claude"
 
 # Install Git hooks
 echo -e "${GREEN}[Claude Config Installer]${NC} Installing Git hooks..."
@@ -86,10 +64,9 @@ fi
 
 echo -e "${BLUE}[Claude Config Installer]${NC} Installation completed!"
 echo -e "${GREEN}[Claude Config Installer]${NC} The following have been installed:"
-echo -e "  - Global configuration: ~/.claude/CLAUDE.md"
-echo -e "  - User settings: ~/.claude/settings.json"
-echo -e "  - Commands: ~/.claude/commands/"
-echo -e "  - Git hooks: pre-commit, post-commit"
+echo -e "  - Claude configuration: ~/.claude/ (symlinked to $(basename "$REPO_ROOT")/claude/)"
+echo -e "  - Git hooks: pre-commit, post-commit (copied)"
 echo ""
 echo -e "${BLUE}[Claude Config Installer]${NC} You can now use Claude Code with your configured settings!"
+echo -e "${YELLOW}[Claude Config Installer]${NC} Note: ~/.claude is symlinked and will auto-update when the repository changes."
 echo -e "${YELLOW}[Claude Config Installer]${NC} Note: Git hooks will auto-stage and push changes to claude/ directory files."
