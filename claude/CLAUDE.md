@@ -106,6 +106,23 @@
 ### Custom Commands
 - `/create-pull-request` - Create a new pull request with proper branch management and PR summary
 
+### Project Documentation
+- **Documentation Location**: If `docs/` directory exists in project root, read relevant documentation before starting work
+  - Check for architecture docs, API specifications, contribution guidelines
+  - Look for project-specific coding standards or conventions
+  - Reference existing examples and patterns in the documentation
+- **Documentation Creation**: When developing features, create and update documentation in `docs/` directory
+  - Document design decisions and architecture changes
+  - Record testing strategies and methodologies used
+  - Create API documentation for new endpoints or interfaces
+  - Update existing documentation when making changes to functionality
+  - Document package responsibilities and design philosophy
+    - Explain the single responsibility of each package/module
+    - Document the design principles and patterns applied
+    - Record the rationale behind architectural choices
+    - Describe how the package fits into the overall system design
+  - Use clear English for all documentation content
+
 ## Development Preferences
 
 ### Libraries and Tools
