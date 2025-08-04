@@ -105,6 +105,7 @@
 
 ### Custom Commands
 - `/create-pull-request` - Create a new pull request with proper branch management and PR summary
+- `/make-docs [type]` - Generate comprehensive project documentation (architecture, packages, api, testing, contributing, or all)
 
 ## Development Preferences
 

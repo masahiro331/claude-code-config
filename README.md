@@ -10,6 +10,8 @@ Personal configuration files for Claude Code CLI with Japanese workflow preferen
 - **Consistent Code Style**: Enforced English documentation and variable naming conventions
 - **Git Workflow Integration**: Conventional commit message format and proper Git practices
 - **Auto-Sync Configuration**: Automatic commit/push of configuration changes and upstream sync checking
+- **Custom Commands**: Built-in commands for common development tasks (PR creation, documentation generation, repository initialization)
+- **Project Documentation**: Automatic generation of comprehensive project documentation
 
 ## Files
 
@@ -17,6 +19,11 @@ Personal configuration files for Claude Code CLI with Japanese workflow preferen
   - `CLAUDE.md` - Global user instructions for Claude Code
   - `settings.json` - Claude Code CLI settings with hooks configuration
   - `commands/` - Custom commands for Claude Code
+    - `create-pull-request.md` - Create pull requests with proper branch management
+    - `make-docs.md` - Generate comprehensive project documentation
+    - `init-repo.md` - Initialize new repositories with proper structure
+    - `commit.md` - Enhanced commit workflow with conventional commits
+    - `refactor.md` - Structured refactoring workflow
 - `hooks/` - Git hooks for automatic configuration management
 - `install-claude-config.sh` - Comprehensive installation script
 - `sync-check.sh` - Script to check sync status with upstream repository
@@ -109,16 +116,24 @@ chmod 600 ~/.claude/*
 ### Development Features
 
 #### Go
+- **Philosophy**: Channels Rob Pike and knqyf263's approaches - simplicity, security-focused design
 - **Automatic Formatting**: Uses `gofmt` and `goimports`
-- **Error Handling**: Comprehensive error wrapping and handling patterns
+- **Error Handling**: Comprehensive error wrapping and handling patterns following defensive programming principles
 - **Testing**: TDD workflow with table-driven tests
-- **Package Structure**: Prefers `internal/` directory organization
+- **Package Structure**: Prefers `internal/` directory organization, follows existing project patterns
 
-#### Python
+#### Python  
+- **Philosophy**: Channels Guido van Rossum and Sebastián Ramírez's approaches - explicit, beautiful, developer-friendly code
 - **Automatic Formatting**: Uses `ruff format` and `ruff check --fix`
-- **Type Checking**: Uses `mypy` for static type analysis
+- **Type Checking**: Uses `mypy` for static type analysis with extensive type hints
 - **Testing**: Uses `pytest` with fixtures and parametrized tests
 - **Package Management**: Uses `uv` for fast package management
+
+#### Project Documentation
+- **Automatic Documentation Generation**: Comprehensive documentation creation for projects
+- **Multiple Documentation Types**: Architecture, package documentation, API specs, testing guides, contributing guidelines
+- **Structured Documentation**: Follows consistent patterns and best practices
+- **Design Philosophy Documentation**: Records package responsibilities and architectural decisions
 
 ### Commit Message Format
 Follows conventional commits:
@@ -166,6 +181,14 @@ The configuration includes shortcuts for:
 - `mypy .` - Run Python type checking
 - `ghq get <repo>` - Clone repository using ghq
 - `./sync-check.sh` - Check sync status with upstream
+
+### Custom Commands
+Built-in Claude commands for development workflows:
+- `/create-pull-request` - Create a new pull request with proper branch management and PR summary
+- `/make-docs [type]` - Generate comprehensive project documentation (architecture, packages, api, testing, contributing, or all)
+- `/init-repo` - Initialize new repositories with proper structure and conventions
+- `/commit` - Enhanced commit workflow with conventional commit format
+- `/refactor` - Structured refactoring workflow with safety checks
 
 ## Updating Configuration
 
