@@ -1,3 +1,8 @@
+---
+description: Generate comprehensive project documentation in the docs/ directory. Types: architecture, packages, api, testing, contributing, all (default)
+allowed-tools: Glob(*), Read(*), Write(*.md), Bash(ls, find, head, tail, wc, grep)
+---
+
 # /make-docs
 
 Generate comprehensive project documentation in the `docs/` directory.
