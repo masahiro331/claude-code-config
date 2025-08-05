@@ -65,7 +65,13 @@ elif git merge-base --is-ancestor "$LOCAL_COMMIT" "$REMOTE_COMMIT" 2>/dev/null; 
     # Local is behind remote
     COMMITS_BEHIND=$(git rev-list --count HEAD..origin/main)
     print_warning "Configuration is $COMMITS_BEHIND commit(s) behind upstream"
-    echo "  Run 'git pull origin main' in $SCRIPT_DIR to update"
+    print_info "Pulling latest changes..."
+    if git pull origin main --quiet; then
+        print_success "Configuration updated successfully"
+    else
+        print_error "Failed to pull changes"
+        echo "  You may need to manually resolve conflicts in $SCRIPT_DIR"
+    fi
 elif git merge-base --is-ancestor "$REMOTE_COMMIT" "$LOCAL_COMMIT" 2>/dev/null; then
     # Local is ahead of remote
     COMMITS_AHEAD=$(git rev-list --count origin/main..HEAD)
