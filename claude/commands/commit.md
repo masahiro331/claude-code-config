@@ -5,7 +5,7 @@ allowed-tools: Bash(git status:*), Bash(git diff:*), Bash(git add:*), Bash(git c
 
 # Smart Git Commit
 
-現在のdiffを分析して、意味のある単位でファイルをグループ化し、適切なcommitメッセージでcommitを作成します。
+Analyze the current diff and group files into meaningful units, creating commits with appropriate commit messages.
 
 ## Current Repository Status
 
@@ -17,27 +17,28 @@ allowed-tools: Bash(git status:*), Bash(git diff:*), Bash(git add:*), Bash(git c
 
 ## Your Task
 
-1. 上記のdiffを分析して、変更内容を理解してください
-2. 関連する変更をグループ化して、論理的な単位に分けてください
-3. 各グループに対して適切なcommitメッセージを作成してください
-4. conventional commit形式（`<type>(<scope>): <subject>`）に従ってください
-5. 必要に応じて複数のcommitに分けて実行してください
+1. Analyze the above diff to understand the changes
+2. Group related changes into logical units
+3. Create appropriate commit messages for each group
+4. Follow conventional commit format (`<type>(<scope>): <subject>`)
+5. Split into multiple commits if necessary
 
 ## Commit Guidelines
 
 - **Type**: feat, fix, docs, style, refactor, test, chore, perf
-- **Scope**: 変更された機能やモジュール名（省略可能）
-- **Subject**: 変更内容の簡潔な説明（英語、動詞で開始）
+- **Scope**: Changed feature or module name (optional)
+- **Subject**: Concise description of changes (English, start with verb)
 
 ## Example Workflow
 
-1. 関連するファイルをstageして最初のcommitを作成
-2. 残りの変更を分析して次のcommitグループを決定
-3. すべての変更がcommitされるまで繰り返し
+1. Stage related files and create the first commit
+2. Analyze remaining changes to determine the next commit group
+3. Repeat until all changes are committed
 
 ## Important Notes
 
-- commitする前に必ずテストを実行してください（`make test`）
-- コードフォーマットを実行してください（`make fmt`）
-- 各commitは独立して動作する状態にしてください
-- commitメッセージは英語で記述してください
+- Always run tests before committing (`make test`)
+- Run code formatting (`make fmt`)
+- Each commit should be in a working state
+- Write commit messages in English
+- **No Signatures**: Do not add Claude signatures or Co-authored lines to commit messages
