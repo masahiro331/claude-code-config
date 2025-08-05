@@ -30,6 +30,30 @@ Tool configurations and common commands:
 
 - **Common Commands**: See `tools/commands.md` for frequently used development commands
 
+## Mandatory Documentation Management
+
+Three essential documents are automatically managed via hooks:
+
+### MEETING_NOTE.md
+- **Purpose**: Records all Claude interactions as meeting minutes
+- **Auto-creation**: Generated at session start with timestamp
+- **Content**: Objectives, key discussions, decisions, action items
+- **Management**: Automatically initialized, manually updated during sessions
+
+### SYSTEM_OVERVIEW.md  
+- **Purpose**: Documents product overview and individual feature specifications
+- **Auto-creation**: Triggered by system/architecture-related keywords
+- **Content**: Product overview, core features, architecture, technical stack
+- **Management**: Created when system discussions occur, maintained manually
+
+### ROADMAP.md
+- **Purpose**: Manages feature requests and implementation status
+- **Auto-creation**: Triggered by feature request/planning keywords  
+- **Content**: Completed features, in-progress items, planned features, blockers
+- **Management**: Created when feature discussions occur, serves as TODO tracker
+
+These documents are mandatory for all projects and help maintain comprehensive project documentation automatically.
+
 ## File Structure
 
 This configuration is organized into:

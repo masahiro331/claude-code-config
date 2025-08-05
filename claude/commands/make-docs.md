@@ -49,6 +49,20 @@ The command creates the following files in the `docs/` directory:
 - `TESTING.md` - Testing strategies and methodologies
 - `CONTRIBUTING.md` - Development workflow and contribution guidelines
 
+## Mandatory Documents Integration
+
+This command also ensures the three mandatory project documents are properly maintained:
+
+### Root Level Documents (Auto-managed via hooks)
+- `MEETING_NOTE.md` - Meeting minutes and design session records
+- `SYSTEM_OVERVIEW.md` - High-level product and system overview
+- `ROADMAP.md` - Feature roadmap and implementation status
+
+### docs/ Directory Enhancement
+- Links mandatory documents to detailed technical documentation
+- Ensures consistency between high-level overview and detailed docs
+- Cross-references features in roadmap with technical specifications
+
 ## Features
 
 - **Automatic Analysis**: Scans the codebase to understand project structure
@@ -63,9 +77,12 @@ This command:
 
 1. Creates the `docs/` directory if it doesn't exist
 2. Analyzes the project structure and codebase
-3. Generates appropriate documentation based on the project type
-4. Follows English documentation standards as specified in CLAUDE.md
-5. Creates well-structured, maintainable documentation files
+3. **Checks and references mandatory documents** (MEETING_NOTE.md, SYSTEM_OVERVIEW.md, ROADMAP.md)
+4. Generates appropriate documentation based on the project type
+5. **Creates cross-references** between mandatory docs and detailed technical docs
+6. Follows English documentation standards as specified in CLAUDE.md
+7. Creates well-structured, maintainable documentation files
+8. **Ensures documentation consistency** across all project documentation levels
 
 ## Notes
 

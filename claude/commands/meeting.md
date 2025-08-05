@@ -58,7 +58,32 @@ Through this dialogue, we'll determine:
 Once the project design is finalized:
 - Initialize repository with `/init-repo` command
 - Create basic project structure
+- **Mandatory documentation will be automatically created**:
+  - `MEETING_NOTE.md` - This design session will be recorded
+  - `SYSTEM_OVERVIEW.md` - System architecture and features documented
+  - `ROADMAP.md` - Implementation plan and feature roadmap
 - Start implementation with TDD (Test-Driven Development)
+
+## 📋 Mandatory Documentation Integration
+
+This meeting will automatically populate the three mandatory documents:
+
+### MEETING_NOTE.md Updates
+- Design decisions and rationale
+- Technical choices and reasoning
+- Feature prioritization discussions
+
+### SYSTEM_OVERVIEW.md Content
+- Product overview and target users
+- Core features and functionality
+- Technical architecture decisions
+- Technology stack selection
+
+### ROADMAP.md Planning
+- MVP feature definition
+- Implementation phases
+- Feature backlog and priorities
+- Technical debt and future considerations
 
 ---
 
