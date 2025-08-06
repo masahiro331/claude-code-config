@@ -44,33 +44,11 @@
           {
             "type": "command",
             "command": "if [ -L ~/.claude ] && [ -x ~/.claude/sync-check.sh ]; then ~/.claude/sync-check.sh; fi"
-          },
-          {
-            "type": "command",
-            "command": "DATE=$(date '+%Y-%m-%d %H:%M:%S'); if [ ! -f MEETING_NOTE.md ]; then echo '# Meeting Notes\\n\\n## Session ('\"$DATE\"')\\n\\n### Objectives\\n- セッション開始\\n\\n### Key Discussions\\n- セッション開始時刻: '\"$DATE\"'\\n\\n### Decisions Made\\n- TBD\\n\\n### Action Items\\n- TBD\\n\\n---\\n' > MEETING_NOTE.md; else sed -i.bak '1a\\\\\\n## Session ('\"$DATE\"')\\\\\\n### Objectives\\\\n- セッション開始\\\\\\n### Key Discussions\\\\n- セッション開始時刻: '\"$DATE\"'\\\\\\n### Decisions Made\\\\n- TBD\\\\\\n### Action Items\\\\n- TBD\\\\\\n---\\\\' MEETING_NOTE.md && rm MEETING_NOTE.md.bak 2>/dev/null; fi; echo '📝 Meeting notes initialized for session: '\"$DATE\""
           }
         ]
       }
     ],
     "UserPromptSubmit": [
-      {
-        "matcher": ".*システム.*|.*概要.*|.*機能.*|.*アーキテクチャ.*|.*設計.*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "if [ ! -f SYSTEM_OVERVIEW.md ]; then echo '# System Overview\\n\\n## Product Overview\\n- TBD\\n\\n## Core Features\\n- TBD\\n\\n## Architecture\\n- TBD\\n\\n## Technical Stack\\n- TBD\\n\\n## Dependencies\\n- TBD\\n' > SYSTEM_OVERVIEW.md; echo '📋 System overview document created'; else echo '📋 Remember to update SYSTEM_OVERVIEW.md with new system information'; fi"
-          }
-        ]
-      },
-      {
-        "matcher": ".*要望.*|.*機能追加.*|.*実装.*|.*TODO.*|.*ロードマップ.*|.*計画.*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "if [ ! -f ROADMAP.md ]; then echo '# Roadmap\\n\\n## Completed Features\\n- TBD\\n\\n## In Progress\\n- TBD\\n\\n## Planned Features\\n- TBD\\n\\n## Future Considerations\\n- TBD\\n\\n## Issues & Blockers\\n- TBD\\n' > ROADMAP.md; echo '🗺️ Roadmap document created'; else echo '🗺️ Remember to update ROADMAP.md with new feature requests'; fi"
-          }
-        ]
-      },
       {
         "matcher": ".*implement.*|.*add.*|.*create.*",
         "hooks": [
